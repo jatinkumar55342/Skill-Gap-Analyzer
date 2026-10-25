@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="20" y1="20" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <!-- Skill analysis target arcs -->
+  <circle cx="32" cy="32" r="20" stroke="white" stroke-width="2.5" stroke-dasharray="6 4" opacity="0.4"/>
+  <circle cx="32" cy="32" r="13" stroke="url(#accent)" stroke-width="2.5" opacity="0.8"/>
+  <!-- Skill growth triangle / beacon -->
+  <path d="M32 17L40 33H24L32 17Z" fill="white"/>
+  <circle cx="32" cy="38" r="3" fill="url(#accent)"/>
+</svg>
