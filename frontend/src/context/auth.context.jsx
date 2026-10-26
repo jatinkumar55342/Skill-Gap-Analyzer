@@ -22,7 +22,17 @@ export function AuthProvider({ children }) {
     setPassword('')
   }
 
-  /* user session state */
+  /* On mount — restore session from httpOnly cookie */
+  useEffect(() => {
+    let cancelled = false
+
+    getMe()
+      .then(({ user }) => { if (!cancelled) setUser(user) })
+      .catch(() =>         { if (!cancelled) setUser(null) })
+      .finally(() =>       { if (!cancelled) setLoading(false) })
+
+    return () => { cancelled = true }
+  }, [])
 
   /* logout is global — clears user everywhere */
   const logout = async () => {
