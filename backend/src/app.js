@@ -30,4 +30,18 @@ app.use((req, res, next) => {
 app.use(["/api/auth", "/auth"], require("./routes/auth.route"))
 app.use(["/api/interview", "/interview"], require("./routes/interveiw.route"))
 
+// Global error handling middleware
+app.use((err, req, res, next) => {
+  if (err.code === "LIMIT_FILE_SIZE") {
+    return res.status(400).json({
+      message: "The uploaded resume PDF is too large. Maximum size allowed is 10MB."
+    })
+  }
+
+  const status = err.status || err.statusCode || 500
+  return res.status(status).json({
+    message: err.message || "An unexpected error occurred on the server."
+  })
+})
+
 module.exports = app
