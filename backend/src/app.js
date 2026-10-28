@@ -1,6 +1,7 @@
 require("dotenv").config({ path: require("path").join(__dirname, "..", ".env") })
 const express = require("express")
 const cookieParser = require("cookie-parser")
+const connectDB = require("./db/db")
 const app = express()
 
 app.use(express.json())
@@ -13,7 +14,13 @@ app.use((req, res, next) => {
 
   if (origin) {
     const cleanOrigin = origin.replace(/\/$/, "")
-    if (!envFrontend || cleanOrigin === envFrontend || cleanOrigin.includes("localhost") || cleanOrigin.endsWith(".vercel.app")) {
+    // Allow if matches configured frontendurl, localhost, or any vercel.app preview domain
+    if (
+      !envFrontend ||
+      cleanOrigin === envFrontend ||
+      cleanOrigin.includes("localhost") ||
+      cleanOrigin.endsWith(".vercel.app")
+    ) {
       res.header("Access-Control-Allow-Origin", origin)
     } else {
       res.header("Access-Control-Allow-Origin", envFrontend)
@@ -27,6 +34,10 @@ app.use((req, res, next) => {
   next()
 })
 
+// Health check
+app.get("/health", (req, res) => res.json({ status: "ok" }))
+
+// Routes
 app.use(["/api/auth", "/auth"], require("./routes/auth.route"))
 app.use(["/api/interview", "/interview"], require("./routes/interveiw.route"))
 
