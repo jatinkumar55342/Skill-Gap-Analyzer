@@ -6,6 +6,27 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
+// CORS
+app.use((req, res, next) => {
+  const origin = req.headers.origin
+  const envFrontend = (process.env.frontendurl || process.env.FRONTEND_URL || "").trim().replace(/\/$/, "")
+
+  if (origin) {
+    const cleanOrigin = origin.replace(/\/$/, "")
+    if (!envFrontend || cleanOrigin === envFrontend || cleanOrigin.includes("localhost") || cleanOrigin.endsWith(".vercel.app")) {
+      res.header("Access-Control-Allow-Origin", origin)
+    } else {
+      res.header("Access-Control-Allow-Origin", envFrontend)
+    }
+  }
+
+  res.header("Access-Control-Allow-Credentials", "true")
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Cookie")
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+  if (req.method === "OPTIONS") return res.sendStatus(204)
+  next()
+})
+
 app.use(["/api/auth", "/auth"], require("./routes/auth.route"))
 app.use(["/api/interview", "/interview"], require("./routes/interveiw.route"))
 
