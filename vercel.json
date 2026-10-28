@@ -1,12 +1,14 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/backend/api/index.js"
+  "version": 2,
+  "trailingSlash": false,
+  "functions": {
+    "backend/api/index.js": {
+      "includeFiles": "backend/node_modules/pdfkit/**",
+      "maxDuration": 60
     },
-    {
-      "source": "/(.*)",
-      "destination": "/frontend/$1"
+    "api/index.js": {
+      "includeFiles": "node_modules/pdfkit/**",
+      "maxDuration": 60
     }
-  ]
+  }
 }
