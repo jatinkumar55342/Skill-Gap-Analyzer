@@ -1,6 +1,14 @@
 const { GoogleGenAI } = require("@google/genai")
 const PDFDocument = require("pdfkit")
 
+// Top-level requires to ensure Vercel NFT bundles PDFKit standard fonts into serverless function
+require("pdfkit/standard-fonts/Helvetica")
+require("pdfkit/standard-fonts/HelveticaBold")
+require("pdfkit/standard-fonts/HelveticaOblique")
+require("pdfkit/standard-fonts/HelveticaBoldOblique")
+require("pdfkit/standard-fonts/TimesRoman")
+require("pdfkit/standard-fonts/TimesBold")
+
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENAI_API_KEY || process.env.OPENAI_API_KEY || ""
 
 const ai = new GoogleGenAI({
