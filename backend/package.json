@@ -1,7 +1,7 @@
 {
   "name": "skill-gap-analyser-backend",
-  "version": "0.1.0",
-  "description": "Backend for Skill Gap Analyser",
+  "version": "0.9.0",
+  "description": "Skill Gap Analyser - Backend AI API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
