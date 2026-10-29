@@ -191,3 +191,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Node](https://img.shields.io/badge/node-18+-green) ![React](https://img.shields.io/badge/react-19-blue)
+
+---
+![License](https://img.shields.io/badge/license-MIT-blue) ![Node](https://img.shields.io/badge/node-18+-green) ![React](https://img.shields.io/badge/react-19-blue)
